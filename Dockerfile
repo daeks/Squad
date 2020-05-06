@@ -5,6 +5,8 @@ ENV STEAMAPPID 403240
 ENV STEAMAPPDIR /home/steam/squad-dedicated
 ENV MODE COMPOSE
 
+RUN ls -l ${STEAMCMDDIR}
+
 RUN if [ "$BUILD" = "INSTALL" ]; then set -x &&\
   ${STEAMCMDDIR}/steamcmd.sh +login anonymous \
     +force_install_dir ${STEAMAPPDIR} +app_update ${STEAMAPPID} validate +quit; \
