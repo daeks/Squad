@@ -7,7 +7,7 @@ ENV MODE COMPOSE
 
 RUN if [ "$BUILD" = "INSTALL" ]; then set -x &&\
   ${STEAMCMDDIR}/steamcmd.sh +login anonymous \
-    +force_install_dir ${STEAMAPPDIR} +app_update ${STEAMAPPID} validate +quit \
+    +force_install_dir ${STEAMAPPDIR} +app_update ${STEAMAPPID} validate +quit; \
   fi
 
 ENV CUSTOM= \
