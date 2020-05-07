@@ -6,11 +6,11 @@ ENV STEAMAPPDIR /home/steam/squad
 ENV MODE COMPOSE
 
 RUN set -x &&\
-  mkdir -p ${STEAMAPPDIR}
+  su - ${USERNAME} -c "mkdir -p ${STEAMAPPDIR}"
 
 RUN if [ "$MODE" = "INSTALL" ]; then set -x &&\
-    "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
-      +force_install_dir ${STEAMAPPDIR} +app_update ${STEAMAPPID} validate +quit; \
+    su - ${USERNAME} -c "${STEAMCMDDIR}/steamcmd.sh +login anonymous \
+      +force_install_dir ${STEAMAPPDIR} +app_update ${STEAMAPPID} validate +quit"; \
   fi
 
 ENV CUSTOM= \
