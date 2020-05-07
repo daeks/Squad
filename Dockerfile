@@ -5,7 +5,17 @@ ENV STEAMAPPID 403240
 ENV STEAMAPPDIR /home/steam/squad
 ENV MODE COMPOSE
 
-RUN [ "/bin/bash", "-c", "mkdir -p $STEAMAPPDIR/SquadGame/{ServerConfig,Saved/{Logs,Crashes}}" ]
+RUN set -x &&\
+  mkdir -p $STEAMAPPDIR
+  
+USER root
+RUN mkdir -p $STEAMAPPDIR/SquadGame/ServerConfig/ &&\
+  chown -R $USERNAME:$USERNAME $STEAMAPPDIR/SquadGame/ServerConfig/
+RUN mkdir -p $STEAMAPPDIR/SquadGame/Saved/Logs/ &&\
+  chown -R $USERNAME:$USERNAME $STEAMAPPDIR/SquadGame/Saved/Logs/
+RUN mkdir -p $STEAMAPPDIR/SquadGame/Saved/Crashes/ &&\
+  chown -R $USERNAME:$USERNAME $STEAMAPPDIR/SquadGame/Saved/Crashes/
+USER $USERNAME
 
 RUN if [ "$MODE" = "INSTALL" ]; then set -x &&\
     "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
