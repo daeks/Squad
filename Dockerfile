@@ -1,13 +1,18 @@
 FROM daeks/steamcmd:latest
 LABEL maintainer="github.com/daeks"
 
+ARG USERNAME=steam
+
 ENV STEAMAPPID 403240
 ENV STEAMAPPDIR /home/steam/squad
 ENV MODE COMPOSE
 
+RUN set -x &&\
+  su - ${USERNAME} -c "mkdir -p ${STEAMAPPDIR} && cd ${STEAMAPPDIR}"
+
 RUN if [ "$MODE" = "INSTALL" ]; then set -x &&\
-    "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
-      +force_install_dir ${STEAMAPPDIR} +app_update ${STEAMAPPID} validate +quit; \
+    su - ${USERNAME} -c "${STEAMCMDDIR}/steamcmd.sh"+login anonymous \
+      +force_install_dir ${STEAMAPPDIR} +app_update ${STEAMAPPID} validate +quit;" \
   fi
 
 ENV CUSTOM= \
@@ -17,6 +22,7 @@ ENV CUSTOM= \
   FIXEDMAXPLAYERS=80 \
   RANDOM=ALWAYS
 
+USER $USERNAME
 WORKDIR $STEAMAPPDIR
 VOLUME $STEAMAPPDIR
 
