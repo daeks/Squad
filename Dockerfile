@@ -2,7 +2,7 @@ FROM daeks/steamcmd:latest
 LABEL maintainer="github.com/daeks"
 
 ENV STEAMAPPID 403240
-ENV STEAMAPPDIR /home/steam/squad-dedicated
+ENV STEAMAPPDIR /home/steam/squad
 ENV MODE COMPOSE
 
 RUN if [ "$MODE" = "INSTALL" ]; then set -x &&\
