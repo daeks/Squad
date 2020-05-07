@@ -6,7 +6,7 @@ ENV STEAMAPPDIR /home/steam/squad
 ENV MODE COMPOSE
 
 RUN set -x &&\
-  mkdir -p $STEAMAPPDIR/{SquadGame/{ServerConfig,Saved/{Logs,Crashes}}}
+  mkdir -p $STEAMAPPDIR/SquadGame/{ServerConfig,Saved/{Logs,Crashes}}}
 
 RUN if [ "$MODE" = "INSTALL" ]; then set -x &&\
     "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
