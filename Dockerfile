@@ -7,6 +7,12 @@ ENV MODE COMPOSE
 
 RUN set -x &&\
   mkdir -p $STEAMAPPDIR
+  
+USER root
+RUN chown -R $USERNAME:$USERNAME $STEAMAPPDIR/SquadGame/ServerConfig/
+RUN chown -R $USERNAME:$USERNAME $STEAMAPPDIR/SquadGame/Saved/Logs/
+RUN chown -R $USERNAME:$USERNAME $STEAMAPPDIR/SquadGame/Saved/Crashes/
+USER $USERNAME
 
 RUN if [ "$MODE" = "INSTALL" ]; then set -x &&\
     "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
