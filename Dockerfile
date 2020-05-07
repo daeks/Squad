@@ -6,11 +6,11 @@ ENV STEAMAPPDIR /home/steam/squad
 ENV MODE COMPOSE
 
 RUN set -x &&\
-  mkdir -p ${STEAMAPPDIR}
+  mkdir -p $STEAMAPPDIR
 
 RUN if [ "$MODE" = "INSTALL" ]; then set -x &&\
-    "${STEAMCMDDIR}/steamcmd.sh +login anonymous \
-      +force_install_dir ${STEAMAPPDIR} +app_update ${STEAMAPPID} validate +quit"; \
+    "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
+      +force_install_dir $STEAMAPPDIR +app_update $STEAMAPPID validate +quit; \
   fi
 
 ENV CUSTOM= \
@@ -24,9 +24,9 @@ WORKDIR $STEAMAPPDIR
 
 VOLUME $STEAMAPPDIR
 
-ENTRYPOINT ${STEAMCMDDIR}/steamcmd.sh \
-    +login anonymous +force_install_dir ${STEAMAPPDIR} +app_update ${STEAMAPPID} +quit &&\
-    ${STEAMAPPDIR}/SquadGameServer.sh \
+ENTRYPOINT $STEAMCMDDIR/steamcmd.sh \
+    +login anonymous +force_install_dir $STEAMAPPDIR +app_update $STEAMAPPID +quit &&\
+    $STEAMAPPDIR/SquadGameServer.sh \
       Port=$PORT QueryPort=$QUERYPORT RCONPORT=$RCONPORT FIXEDMAXPLAYERS=$FIXEDMAXPLAYERS RANDOM=$RANDOM $CUSTOM
 
 EXPOSE $PORT/udp \
