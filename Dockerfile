@@ -9,7 +9,7 @@ RUN set -x &&\
   su - ${USERNAME} -c "mkdir -p ${STEAMAPPDIR}"
 
 RUN if [ "$MODE" = "INSTALL" ]; then set -x &&\
-    su - ${USERNAME} -c "${STEAMCMDDIR}/steamcmd.sh +login anonymous \
+    "${STEAMCMDDIR}/steamcmd.sh +login anonymous \
       +force_install_dir ${STEAMAPPDIR} +app_update ${STEAMAPPID} validate +quit"; \
   fi
 
@@ -21,6 +21,7 @@ ENV CUSTOM= \
   RANDOM=ALWAYS
 
 WORKDIR $STEAMAPPDIR
+
 VOLUME $STEAMAPPDIR
 
 ENTRYPOINT ${STEAMCMDDIR}/steamcmd.sh \
