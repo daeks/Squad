@@ -5,8 +5,6 @@ ENV STEAMAPPID 403240
 ENV STEAMAPPDIR /home/steam/squad
 ENV MODE COMPOSE
 
-RUN [ "/bin/bash", "-c", "mkdir -p $STEAMAPPDIR/SquadGame/{ServerConfig,Saved/{Logs,Crashes}}" ]
-
 RUN if [ "$MODE" = "INSTALL" ]; then set -x &&\
     "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
       +force_install_dir $STEAMAPPDIR +app_update $STEAMAPPID validate +quit; \
