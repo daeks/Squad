@@ -2,7 +2,7 @@ FROM daeks/steamcmd:latest
 LABEL maintainer="github.com/daeks"
 
 ENV STEAMAPPID 403240
-ENV STEAMAPPDIR /home/steam/squad
+ENV STEAMAPPDIR /home/$USERNAME/squad
 ENV MODE COMPOSE
 
 RUN [ "/bin/bash", "-c", "mkdir -p $STEAMAPPDIR/SquadGame/{ServerConfig,Saved/{Logs,Crashes}}" ]
@@ -19,7 +19,7 @@ ENV CUSTOM= \
   FIXEDMAXPLAYERS=80 \
   RANDOM=ALWAYS
 
-COPY --chown=steam ./healthcheck.sh $STEAMAPPDIR/../healthcheck.sh
+COPY --chown=$USERNAME ./healthcheck.sh $STEAMAPPDIR/../healthcheck.sh
 RUN chmod +x $STEAMAPPDIR/../healthcheck.sh
 HEALTHCHECK CMD $STEAMAPPDIR/../healthcheck.sh
 
