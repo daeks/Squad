@@ -18,8 +18,9 @@ ENV CUSTOM= \
   RCONPORT=21114 \
   FIXEDMAXPLAYERS=80 \
   RANDOM=ALWAYS
-  
-HEALTHCHECK CMD [[ $(pgrep -lf "Linux/SquadGameServer") > /dev/null ]] && exit 1 || echo 0
+
+COPY ./healthcheck.sh $STEAMAPPDIR/healthcheck.sh
+HEALTHCHECK CMD $STEAMAPPDIR/healthcheck.sh || exit 1
 
 WORKDIR $STEAMAPPDIR
 VOLUME $STEAMAPPDIR
