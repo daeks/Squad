@@ -20,7 +20,7 @@ ENV CUSTOM= \
   RANDOM=ALWAYS
 
 COPY ./healthcheck.sh $STEAMAPPDIR/healthcheck.sh
-RUN ["chmod", "+x", "$STEAMAPPDIR/healthcheck.sh"]
+RUN [ "/bin/bash", "-c", "chmod +x $STEAMAPPDIR/healthcheck.sh"]
 HEALTHCHECK CMD $STEAMAPPDIR/healthcheck.sh || exit 1
 
 WORKDIR $STEAMAPPDIR
