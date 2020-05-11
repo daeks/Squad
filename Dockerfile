@@ -21,7 +21,7 @@ ENV CUSTOM= \
 
 COPY ./healthcheck.sh $STEAMAPPDIR/../healthcheck.sh
 USER root
-RUN chown $USERNAME $STEAMAPPDIR/../healthcheck.sh && chmod +x $STEAMAPPDIR/../healthcheck.sh
+RUN chown $USERNAME:$USERNAME $STEAMAPPDIR/../healthcheck.sh && chmod +x $STEAMAPPDIR/../healthcheck.sh
 USER $USERNAME
 
 HEALTHCHECK CMD $STEAMAPPDIR/../healthcheck.sh
