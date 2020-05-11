@@ -19,8 +19,7 @@ ENV CUSTOM= \
   FIXEDMAXPLAYERS=80 \
   RANDOM=ALWAYS
 
-#HEALTHCHECK CMD /bin/bash -c "[[ $(pgrep -lf "Linux/SquadGameServer") > /dev/null ]] && exit 1 || exit 0"
-HEALTHCHECK CMD-SHELL if [ $(pgrep -lf "Linux/SquadGameServer") > /dev/null ]; then true; else false; fi
+HEALTHCHECK CMD /bin/bash -c "[[ $(pgrep -lf "Linux/SquadGameServer") > /dev/null ]] && exit 1 || exit 0"
 
 WORKDIR $STEAMAPPDIR
 VOLUME $STEAMAPPDIR
