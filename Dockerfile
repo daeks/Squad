@@ -19,7 +19,9 @@ ENV CUSTOM= \
   FIXEDMAXPLAYERS=80 \
   RANDOM=ALWAYS
 
-HEALTHCHECK CMD /bin/bash -c "if [ $(pgrep -lf "Linux/SquadGameServer") > /dev/null ]; then echo "SquadGameServer running on PID #$PID - Port: $PORT / $QUERYPORT / $RCONPORT" && exit 0; fi" || exit 1
+COPY ./healthcheck.sh $STEAMAPPDIR/healthcheck.sh
+RUN ["chmod", "+x", "$STEAMAPPDIR/healthcheck.sh"]
+HEALTHCHECK CMD $STEAMAPPDIR/healthcheck.sh || exit 1
 
 WORKDIR $STEAMAPPDIR
 VOLUME $STEAMAPPDIR
