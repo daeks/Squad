@@ -19,9 +19,6 @@ ENV CUSTOM= \
   FIXEDMAXPLAYERS=80 \
   RANDOM=ALWAYS
 
-#COPY --chown=steam ./healthcheck.sh $STEAMAPPDIR/../healthcheck.sh
-#RUN chmod +x $STEAMAPPDIR/../healthcheck.sh
-
 COPY ./healthcheck.sh $STEAMAPPDIR/../healthcheck.sh
 USER root
 RUN chown $USERNAME $STEAMAPPDIR/../healthcheck.sh && chmod +x $STEAMAPPDIR/../healthcheck.sh
