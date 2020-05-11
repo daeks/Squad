@@ -19,9 +19,7 @@ ENV CUSTOM= \
   FIXEDMAXPLAYERS=80 \
   RANDOM=ALWAYS
 
-COPY ./healthcheck.sh $STEAMAPPDIR/healthcheck.sh
-RUN [ "/bin/bash", "-c", "chmod +x $STEAMAPPDIR/healthcheck.sh"]
-HEALTHCHECK CMD $STEAMAPPDIR/healthcheck.sh || exit 1
+HEALTHCHECK CMD $(pgrep -lf "Linux/SquadGameServer") > /dev/null || exit 1
 
 WORKDIR $STEAMAPPDIR
 VOLUME $STEAMAPPDIR
