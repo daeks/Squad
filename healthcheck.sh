@@ -1,7 +1,8 @@
 #!/bin/bash
-if pgrep -lf "Linux/SquadGameServer" > /dev/null
+PID=$(pgrep -lf "Linux/SquadGameServer")
+if $PID > /dev/null
 then
-    echo "SquadGameServer Running" && exit 0
+    echo "SquadGameServer running on PID #$PID - Port: $PORT / $QUERYPORT / $RCONPORT" && exit 0
 else
-    echo "SquadGameServer Stopped" && exit 1
+    echo "SquadGameServer STOPPED" && exit 1
 fi
