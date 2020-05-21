@@ -3,6 +3,8 @@ LABEL maintainer="github.com/daeks"
 
 ENV STEAMAPPID 403240
 ENV STEAMAPPDIR $STEAMHOMEDIR/squad
+ENV VERBOSE OFF
+
 ENV MODE COMPOSE
 
 RUN [ "/bin/bash", "-c", "mkdir -p $STEAMAPPDIR/SquadGame/{ServerConfig,Saved/{Logs,Crashes}}" ]
