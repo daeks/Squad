@@ -9,7 +9,7 @@ RUN [ "/bin/bash", "-c", "mkdir -p $STEAMAPPDIR/SquadGame/{ServerConfig,Saved/{L
 
 RUN if [ "$MODE" = "INSTALL" ]; then set -x &&\
     "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
-      +force_install_dir $STEAMAPPDIR +app_update $STEAMAPPID validate +quit; &&\
+      +force_install_dir $STEAMAPPDIR +app_update $STEAMAPPID validate +quit &&\
       echo $'[Core.Log]\nLogSquadScorePoints=verbose' >> $STEAMAPPDIR/SquadGame/Saved/Config/LinuxServer/Engine.ini \
   fi
 
