@@ -24,7 +24,7 @@ COPY ./status.sh $STEAMHOMEDIR/status.sh
 COPY ./squad.sh $STEAMHOMEDIR/squad.sh
 USER root
 RUN chown $USERNAME:$USERNAME $STEAMHOMEDIR/squad.sh && chmod +x $STEAMHOMEDIR/squad.sh
-RUN chown $USERNAME:$USERNAME $STEAMHOMEDIR/squad.sh && chmod +x $STEAMHOMEDIR/squad.sh
+RUN chown $USERNAME:$USERNAME $STEAMHOMEDIR/status.sh && chmod +x $STEAMHOMEDIR/status.sh
 USER $USERNAME
 
 HEALTHCHECK CMD $STEAMHOMEDIR/status.sh
