@@ -1,5 +1,7 @@
 #!/bin/bash
-$STEAMCMDDIR/steamcmd.sh +login anonymous +force_install_dir $STEAMAPPDIR +app_update $STEAMAPPID +quit 
+$STEAMCMDDIR/steamcmd.sh +login anonymous +force_install_dir $STEAMAPPDIR +app_update $STEAMAPPID +quit
+
+source $STEAMHOMEDIR/mods.sh
 
 if [ "$VERBOSE" != "OFF" ]; then
   if [ -f $STEAMAPPDIR/SquadGame/Saved/Config/LinuxServer/Engine.ini ]; then
